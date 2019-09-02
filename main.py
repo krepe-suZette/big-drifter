@@ -3,6 +3,7 @@ import time
 
 import watchman
 import alert_telegram
+import alert_discord
 
 
 formatter = logging.Formatter('%(asctime)s|%(message)s')
@@ -25,6 +26,7 @@ def main():
         if data[2] >= 4:
             continue
         alert_telegram.send_to_channel(data, "@bigdrifter")
+        alert_discord.send_webhook(data)
     queue = watchman.add_members_to_queue("레이너특공대", 75)
     return
 
