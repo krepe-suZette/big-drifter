@@ -1,5 +1,6 @@
 import telegram
 from telegram import Bot
+import datetime
 
 from bungie_api import DestinyActivityModeType
 
@@ -16,7 +17,7 @@ def send_to_channel(data, chat_id=CHAT_ID):
     msg_md = f"""*잠수 감지!*
 
 {data[3][0]} - {data[3][1]}
-KST {data[0]}
+KST {datetime.datetime.strptime(data[0], "%Y-%m-%dT%H:%M:%SZ") + datetime.timedelta(hours=9)}
 활동명: {DestinyActivityModeType.get(data[4], data[4])}
 KDA: {data[5]["kills"]:0.0f}/{data[5]["deaths"]:0.0f}/{data[5]["assists"]:0.0f}
 점수(티끌): {data[5]["score"]:0.0f}

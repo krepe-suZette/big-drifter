@@ -35,7 +35,7 @@ def check_from_queue(mode=75) -> [[datetime.datetime, str, int, [str, str], dict
         if stats["completed"] and stats["kills"] < 2 and stats["score"] == 0:
             fireteam = get_fireteam_count_from_pgcr(instance_id, stats["fireteamId"])
         # 인원수와 무관하게 잠수기록을 result에 추가
-        results.append([datetime.datetime.strptime(activity["period"], "%Y-%m-%dT%H:%M:%SZ") + datetime.timedelta(hours=9), instance_id, fireteam, user_info, mode, stats])
+        results.append([activity["period"], instance_id, fireteam, user_info, mode, stats])
     with open("checked.json", "w") as f:
         json.dump(new_checked, f)
     return results
