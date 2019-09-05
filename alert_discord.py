@@ -8,7 +8,7 @@ with open("DISCORD_WEBHOOK", "r") as f:
     WEBHOOK_URL = f.read().strip()
 
 
-def send_webhook(url, data):
+def send_webhook(data, url=WEBHOOK_URL):
     # [활동 시작 시간(GMT), instance_id, fireteam, [display_name, clan_name], mode, stats]
     message = {
         "username": "BIG DRIFTER(β)",
@@ -58,7 +58,7 @@ def send_webhook(url, data):
         ]
     }
     result = requests.post(url, data=json.dumps(message), headers={"Content-Type": "application/json"})
-    print(result)
+    return result
 
 
 if __name__ == "__main__":
